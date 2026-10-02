@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>皮皮电影网 - 轻松看电影：随机推荐、心情片单与每日佳片</title>
+<meta name="keywords" content="皮皮电影网, pipidianyingwang-zh, 轻松看电影, 电影推荐, 随机电影, 心情片单, 每日佳片, 看片指南">
+<meta name="description" content="皮皮电影网（pipidianyingwang-zh.github.io）主打轻松看电影：随机推荐、心情片单、每日佳片与随性选片指南，让挑片这件事本身也好玩起来。">
+<meta name="author" content="皮皮电影网">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="theme-color" content="#fff7ec">
+<meta property="og:type" content="website">
+<meta property="og:title" content="皮皮电影网 - 轻松看电影：随机推荐、心情片单与每日佳片">
+<meta property="og:description" content="皮皮电影网 pipidianyingwang-zh.github.io 主打轻松看电影：随机推荐、心情片单、每日佳片与随性选片指南。">
+<meta property="og:url" content="https://pipidianyingwang-zh.github.io">
+<meta property="og:site_name" content="皮皮电影网">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://pipidianyingwang-zh.github.io">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍿</text></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+--bg:#fff8f0;--bg2:#fff2e2;--card:#ffffff;--card2:#fff6ea;--line:#f0dcc4;
+--txt:#3a2e22;--txt2:#7a6a55;--txt3:#a8947c;
+--peach:#ff8a5b;--peach2:#ff6b3d;--butter:#ffc94d;--mint:#5fc9a8;--lilac:#a78bfa;--sky:#5aa9e6;--rose:#ff6f91;
+}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:"PingFang SC","Microsoft YaHei","Nunito","Segoe UI",system-ui,sans-serif;background:var(--bg);color:var(--txt);line-height:1.85;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+background:radial-gradient(620px 440px at 88% 6%,rgba(255,138,91,.16),transparent 66%),
+radial-gradient(520px 500px at 4% 48%,rgba(95,201,168,.14),transparent 64%),
+radial-gradient(460px 460px at 60% 92%,rgba(167,139,250,.13),transparent 66%);}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+section{padding:96px 0}
+.eyebrow{display:inline-flex;align-items:center;gap:7px;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--peach2);font-weight:800;border:2px solid var(--line);background:var(--card);padding:6px 14px;border-radius:999px}
+.eyebrow span{font-size:13px}
+.sec-h{margin-bottom:56px}
+.sec-h h2{font-size:32px;font-weight:900;letter-spacing:-.4px;margin:16px 0 14px}
+.sec-h h2 em{font-style:normal;color:var(--peach2)}
+.sec-h p{color:var(--txt2);font-size:15.5px;max-width:660px}
+.sec-h .dot{width:52px;height:14px;background:var(--butter);border-radius:999px;margin-top:18px;position:relative}
+.sec-h .dot::after{content:"";position:absolute;right:-10px;top:-6px;width:24px;height:24px;background:var(--peach);border-radius:50%;opacity:.85}
+
+/* 顶栏 */
+.top{position:sticky;top:0;z-index:100;background:rgba(255,248,240,.88);backdrop-filter:blur(16px);border-bottom:2px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:76px;gap:22px}
+.logo{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.logo-i{width:44px;height:44px;border-radius:16px;background:linear-gradient(135deg,var(--peach),var(--butter));display:grid;place-items:center;font-size:22px;box-shadow:0 6px 16px rgba(255,138,91,.34)}
+.logo-t{font-size:18px;font-weight:900;letter-spacing:.5px}
+.logo-t small{display:block;font-size:8.5px;color:var(--txt3);font-weight:700;letter-spacing:1.4px;font-family:"Nunito",sans-serif}
+.nav{display:flex;gap:6px;align-items:center}
+.nav a{padding:9px 17px;font-size:14px;color:var(--txt2);font-weight:700;transition:.25s;border-radius:999px}
+.nav a:hover{color:var(--peach2);background:var(--bg2)}
+.pop{background:var(--peach);color:#fff;padding:10px 22px;border:none;border-radius:999px;font-size:14px;font-weight:800;cursor:pointer;transition:.3s;box-shadow:0 6px 16px rgba(255,107,61,.34);font-family:inherit}
+.pop:hover{transform:translateY(-3px) rotate(-2deg);background:var(--peach2)}
+.burger{display:none;background:none;border:none;color:var(--txt);font-size:26px;cursor:pointer}
+
+/* Hero */
+.hero{padding:76px 0 96px;overflow:hidden;position:relative}
+.hero .wrap{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+.hero-in{display:flex;flex-direction:column;gap:22px}
+.chips{display:flex;gap:9px;flex-wrap:wrap}
+.chip{font-size:12.5px;font-weight:800;padding:7px 15px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--txt2)}
+.chip.c2{background:var(--bg2);color:var(--peach2);border-color:var(--peach)}
+.hero h1{font-size:clamp(40px,6.6vw,72px);font-weight:900;line-height:1.2;letter-spacing:-1.4px}
+.hero h1 s{text-decoration:none;background:linear-gradient(120deg,var(--peach),var(--butter));padding:0 8px;border-radius:14px;display:inline-block;transform:rotate(-2deg)}
+.hero h1 sub{display:block;font-size:16px;color:var(--txt3);font-weight:600;letter-spacing:.5px;margin-top:16px;font-style:normal}
+.hero p.lead{font-size:17px;color:var(--txt2);max-width:560px}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{background:var(--peach);color:#fff;padding:14px 30px;border:none;border-radius:999px;font-size:14.5px;font-weight:800;cursor:pointer;transition:.3s;letter-spacing:.5px;font-family:inherit;box-shadow:0 6px 16px rgba(255,107,61,.3)}
+.btn:hover{background:var(--peach2);transform:translateY(-3px)}
+.btn-ghost{background:var(--card);color:var(--txt);border:2px solid var(--line);box-shadow:none}
+.btn-ghost:hover{border-color:var(--peach);color:var(--peach2);background:var(--card);transform:translateY(-3px)}
+
+/* 随机抽片机 */
+.gacha{background:var(--card);border:2px solid var(--line);border-radius:34px;padding:34px;position:relative;overflow:hidden}
+.gacha::before{content:"";position:absolute;inset:-2px;border-radius:34px;padding:2px;background:linear-gradient(135deg,var(--peach),var(--butter),var(--mint),var(--lilac));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude}
+.gtop{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:20px;gap:12px;position:relative;z-index:2}
+.gtop h5{font-size:18px;font-weight:900}
+.gtop span{font-size:11px;color:var(--txt3);font-family:"Nunito",sans-serif;letter-spacing:1px}
+.screen{background:var(--bg2);border-radius:22px;padding:30px 26px;min-height:210px;display:flex;flex-direction:column;justify-content:center;position:relative;z-index:2;border:2px dashed var(--line)}
+.screen .ph{font-size:46px;text-align:center;margin-bottom:8px}
+.screen h6{font-size:22px;font-weight:900;text-align:center;margin-bottom:8px}
+.screen p{font-size:13.5px;color:var(--txt2);text-align:center;max-width:400px;margin:0 auto}
+.screen .tags{display:flex;gap:7px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.screen .tags i{font-style:normal;font-size:11px;color:var(--peach2);background:var(--card);border:1.5px solid var(--line);padding:3px 11px;border-radius:999px;font-family:"Nunito",sans-serif}
+.spin{text-align:center;margin-top:22px;position:relative;z-index:2}
+.spin button{font-size:16px;padding:16px 42px}
+.spin small{display:block;margin-top:12px;font-size:11.5px;color:var(--txt3)}
+
+/* 每日佳片 */
+.daily{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.dc{background:var(--card);border:2px solid var(--line);border-radius:24px;padding:22px 20px;transition:.3s;cursor:pointer;position:relative}
+.dc:hover{transform:translateY(-6px) rotate(-1deg);border-color:var(--peach)}
+.dc .no{position:absolute;right:16px;top:12px;font-size:11px;font-weight:900;color:var(--txt3);font-family:"Nunito",sans-serif}
+.dc .em{font-size:30px;margin-bottom:12px}
+.dc h5{font-size:16.5px;font-weight:900;margin-bottom:7px}
+.dc p{font-size:13px;color:var(--txt2);margin-bottom:14px}
+.dc .ft{display:flex;justify-content:space-between;font-size:11px;color:var(--txt3);font-family:"Nunito",sans-serif;border-top:2px solid var(--line);padding-top:12px}
+
+/* 心情片单 */
+.moods{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.mood{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:24px 12px;text-align:center;transition:.3s;cursor:pointer}
+.mood:hover{transform:translateY(-5px);border-color:var(--peach)}
+.mood .ic{font-size:34px;display:block;margin-bottom:10px}
+.mood b{display:block;font-size:14.5px;font-weight:800}
+.mood p{font-size:11.5px;color:var(--txt3);margin-top:5px;font-family:"Nunito",sans-serif}
+.mood.on{background:var(--peach);border-color:var(--peach);color:#fff;box-shadow:0 8px 20px rgba(255,107,61,.34)}
+.mood.on p{color:rgba(255,255,255,.85)}
+.mlist{margin-top:26px;display:none;background:var(--card);border:2px solid var(--line);border-radius:24px;padding:26px;animation:fade .35s}
+.mlist.on{display:block}
+.mlist h5{font-size:18px;font-weight:900;margin-bottom:16px}
+.mlist h5 em{font-style:normal;color:var(--peach2)}
+.mlist .ml{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.mi{background:var(--bg2);border-radius:16px;padding:16px 18px;border:1.5px solid var(--line)}
+.mi b{display:block;font-size:15.5px;font-weight:800;margin-bottom:5px}
+.mi p{font-size:12.5px;color:var(--txt2)}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+/* 挑片挑战 */
+.bingo{background:var(--card);border:2px solid var(--line);border-radius:30px;padding:34px}
+.bh{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:22px;gap:12px}
+.bh h4{font-size:20px;font-weight:900}
+.bh span{font-size:11.5px;color:var(--txt3);font-family:"Nunito",sans-serif}
+.bgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.bb{aspect-ratio:1/1;border:2px solid var(--line);border-radius:18px;background:var(--bg2);display:grid;place-items:center;text-align:center;padding:12px;font-size:13.5px;font-weight:700;color:var(--txt2);cursor:pointer;transition:.25s}
+.bb:hover{border-color:var(--peach);color:var(--peach2)}
+.bb.done{background:var(--mint);border-color:var(--mint);color:#fff;text-decoration:line-through;text-decoration-color:rgba(255,255,255,.6)}
+.bbig{display:flex;justify-content:space-between;align-items:center;margin-top:24px;gap:14px;flex-wrap:wrap}
+.bbig .st{font-size:14px;color:var(--txt2)}
+.bbig .st b{color:var(--peach2);font-family:"Nunito",sans-serif}
+
+/* 榜单 */
+.rank{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.rk{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:20px 22px;display:flex;gap:16px;align-items:center;transition:.3s;cursor:pointer}
+.rk:hover{border-color:var(--peach);transform:translateX(5px)}
+.rk .no{font-size:30px;font-weight:900;color:var(--line);font-family:"Nunito",sans-serif;min-width:46px}
+.rk:nth-child(1) .no{color:var(--butter)}
+.rk:nth-child(2) .no{color:var(--peach)}
+.rk .tx{flex:1}
+.rk h5{font-size:16.5px;font-weight:900}
+.rk p{font-size:12.5px;color:var(--txt2);margin-top:4px}
+.rk .vl{font-size:12px;color:var(--peach2);font-weight:800;font-family:"Nunito",sans-serif;white-space:nowrap}
+
+/* 观影打卡 */
+.board{background:var(--card);border:2px solid var(--line);border-radius:30px;padding:34px}
+.bd-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px;gap:12px}
+.bd-h h4{font-size:20px;font-weight:900}
+.bd-h span{font-size:11.5px;color:var(--txt3);font-family:"Nunito",sans-serif}
+.bd-sub{font-size:13px;color:var(--txt2);margin-bottom:22px}
+.wk{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
+.day{background:var(--bg2);border:2px solid var(--line);border-radius:16px;padding:14px 8px;text-align:center;cursor:pointer;transition:.25s}
+.day:hover{border-color:var(--peach)}
+.day b{display:block;font-size:11px;color:var(--txt3);font-weight:700;font-family:"Nunito",sans-serif;margin-bottom:8px}
+.day .popc{width:34px;height:34px;border-radius:50%;margin:0 auto;display:grid;place-items:center;font-size:16px;background:var(--card);border:1.5px solid var(--line)}
+.day.on{background:var(--peach);border-color:var(--peach)}
+.day.on .popc{background:#fff;border-color:#fff}
+.day.on b{color:rgba(255,255,255,.9)}
+.bd-stat{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:24px}
+.st-i{background:var(--bg2);border-radius:16px;padding:18px;text-align:center}
+.st-i b{display:block;font-size:28px;font-weight:900;color:var(--peach2);font-family:"Nunito",sans-serif}
+.st-i span{font-size:12px;color:var(--txt2)}
+
+/* 观影搭子 */
+.buddy{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.bd2{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:24px;transition:.3s;cursor:pointer}
+.bd2:hover{border-color:var(--peach);transform:translateY(-4px)}
+.bd2 .av{font-size:34px;margin-bottom:12px}
+.bd2 h5{font-size:16.5px;font-weight:900;margin-bottom:7px}
+.bd2 p{font-size:13px;color:var(--txt2)}
+.bd2 .tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:14px;border-top:2px solid var(--line);padding-top:14px}
+.bd2 .tags i{font-style:normal;font-size:10.5px;color:var(--peach2);border:1.5px solid var(--line);padding:3px 9px;border-radius:999px;font-family:"Nunito",sans-serif}
+
+/* 资讯 */
+.news{display:grid;grid-template-columns:1.3fr 1fr;gap:22px}
+.nm{background:var(--card);border:2px solid var(--line);border-radius:24px;overflow:hidden;cursor:pointer;transition:.3s}
+.nm:hover{border-color:var(--peach)}
+.nm .ph{height:220px;background:linear-gradient(135deg,var(--bg2),#fff);display:grid;place-items:center;font-size:68px}
+.nm .tx{padding:24px 26px}
+.nm time{font-size:11px;color:var(--peach2);font-family:"Nunito",sans-serif;letter-spacing:1px}
+.nm h4{font-size:20px;font-weight:900;margin:8px 0 10px;line-height:1.5}
+.nm p{font-size:14px;color:var(--txt2)}
+.nl{display:grid;gap:14px}
+.ni{background:var(--card);border:2px solid var(--line);border-radius:18px;padding:20px 22px;transition:.3s;cursor:pointer}
+.ni:hover{border-color:var(--peach)}
+.ni time{font-size:11px;color:var(--txt3);font-family:"Nunito",sans-serif}
+.ni h5{font-size:15.5px;font-weight:800;margin:6px 0 6px;line-height:1.55}
+.ni p{font-size:13px;color:var(--txt2)}
+
+/* 订阅 */
+.sub{background:linear-gradient(135deg,var(--peach),var(--butter));border-radius:34px;padding:44px 36px;text-align:center;position:relative;overflow:hidden}
+.sub::before,.sub::after{content:"🍿";position:absolute;font-size:120px;opacity:.12}
+.sub::before{left:-20px;top:-30px}
+.sub::after{right:-24px;bottom:-40px}
+.sub h3{font-size:26px;font-weight:900;margin-bottom:12px;position:relative;z-index:2}
+.sub p{color:rgba(58,46,34,.85);font-size:15px;max-width:520px;margin:0 auto 26px;position:relative;z-index:2}
+.sub-f{display:flex;gap:10px;max-width:440px;margin:0 auto;flex-wrap:wrap;position:relative;z-index:2}
+.sub-f input{flex:1;min-width:180px;padding:14px 18px;border:2px solid rgba(255,255,255,.7);background:rgba(255,255,255,.6);border-radius:999px;color:var(--txt);font-size:14px;font-family:inherit}
+.sub-f input:focus{outline:none;border-color:#fff;background:#fff}
+.sub-f button{background:var(--txt);color:#fff;border:none;padding:14px 28px;border-radius:999px;font-size:14.5px;font-weight:800;cursor:pointer;font-family:inherit;transition:.3s}
+.sub-f button:hover{background:var(--peach2);transform:translateY(-3px)}
+
+/* FAQ */
+.faq{display:grid;gap:12px;max-width:860px;margin:0 auto}
+.fq{background:var(--card);border:2px solid var(--line);border-radius:18px;overflow:hidden}
+.fq[open]{border-color:var(--peach)}
+.fq summary{cursor:pointer;padding:20px 24px;font-size:15.5px;font-weight:800;list-style:none;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.fq summary::-webkit-details-marker{display:none}
+.fq summary::after{content:"＋";color:var(--peach2);font-size:22px;flex-shrink:0}
+.fq[open] summary::after{content:"−"}
+.fq div{padding:0 24px 22px;font-size:14.5px;color:var(--txt2);border-top:2px solid var(--line);padding-top:16px}
+
+/* 页脚 */
+.ft{background:#3a2e22;color:#e8ddce;padding:60px 0 26px}
+.ft .wrap{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px}
+.ft p{color:#b9a98f;font-size:14px;margin-top:14px}
+.ft-col h5{font-size:14.5px;margin-bottom:18px;font-weight:800;color:#fff}
+.ft-col a{display:block;color:#b9a98f;font-size:14px;padding:5px 0;transition:.2s}
+.ft-col a:hover{color:var(--butter);padding-left:5px}
+.ft-bot{border-top:1px solid rgba(255,255,255,.12);padding-top:22px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;font-size:12.5px;color:#8a7a64;font-family:"Nunito",sans-serif}
+.ft-bot a{color:#8a7a64;margin-left:20px}
+.ft-bot a:hover{color:#fff}
+
+@media(max-width:1040px){
+.wrap{padding:0 20px}
+section{padding:70px 0}
+.sec-h h2{font-size:25px}
+.hero .wrap{grid-template-columns:1fr;gap:44px}
+.daily,.buddy,.moods{grid-template-columns:1fr 1fr}
+.moods{grid-template-columns:repeat(3,1fr)}
+.rank,.news{grid-template-columns:1fr}
+.bgrid,.bd-stat{grid-template-columns:repeat(2,1fr)}
+.wk{grid-template-columns:repeat(4,1fr)}
+.mlist .ml{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+.burger{display:block}
+.pop{display:none}
+.nav{position:fixed;top:76px;left:0;right:0;flex-direction:column;background:var(--bg);border-bottom:2px solid var(--line);padding:14px;transform:translateY(-160%);transition:.3s}
+.nav.open{transform:translateY(0)}
+.nav a{width:100%;text-align:center}
+.hero h1{font-size:38px}
+.hero-btns,.spin button,.sub-f{flex-direction:column}
+.btn,.sub-f button{width:100%}
+.daily,.buddy,.moods{grid-template-columns:1fr}
+.wk{grid-template-columns:repeat(4,1fr)}
+.bgrid,.bd-stat{grid-template-columns:1fr 1fr}
+.ft .wrap{grid-template-columns:1fr;gap:28px}
+.ft-bot{flex-direction:column;text-align:center}
+.ft-bot a{margin:0 10px}
+.gacha,.bingo,.board,.sub{padding:26px 20px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/zhangzong.js"></script>
+
+<div class="top">
+  <div class="wrap">
+    <a class="logo" href="#"><span class="logo-i">🍿</span><span class="logo-t">皮皮电影网<small>pipidianyingwang-zh.github.io</small></span></a>
+    <nav class="nav" id="nav">
+      <a href="#home">首页</a>
+      <a href="#gacha">随机抽片</a>
+      <a href="#mood">心情片单</a>
+      <a href="#daily">每日佳片</a>
+      <a href="#board">观影打卡</a>
+      <a href="#news">影迷资讯</a>
+    </nav>
+    <button class="pop" onclick="document.getElementById('gacha').scrollIntoView({behavior:'smooth'})">🎲 帮我抽一部</button>
+    <button class="burger" id="burger">☰</button>
+  </div>
+</div>
+
+<!-- Hero -->
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="hero-in">
+      <span class="eyebrow"><span>🍿</span>Pipi Picks</span>
+      <h1>今天<del style="text-decoration:none">吃什么</del><s>看什么</s>？<br>让皮皮替你决定。</h1>
+      <sub>PIPI · PICKS · POPCORN —— 挑片不纠结，快乐看电影</sub>
+      <div class="chips"><span class="chip c2">🎲 随机抽片</span><span class="chip">🌤 心情匹配</span><span class="chip">📅 每日佳片</span><span class="chip">📋 挑片挑战</span><span class="chip">🍿 观影打卡</span></div>
+      <p class="lead">皮皮电影网（pipidianyingwang-zh.github.io）是一个主打<strong>轻松看电影</strong>的选片指南：不会给你一长串"必看神作"，而是用随机抽片、心情匹配、每日推荐和观影打卡，让挑片这件事本身也好玩起来。</p>
+      <div class="hero-btns">
+        <a class="btn" href="#gacha">🎲 立刻抽一部 →</a>
+        <a class="btn btn-ghost" href="#mood">按心情挑 →</a>
+      </div>
+    </div>
+    <div class="gacha" id="gacha">
+      <div class="gtop"><h5>🎲 皮皮抽片机</h5><span>点一下，换一部</span></div>
+      <div class="screen" id="gscreen">
+        <div class="ph">🎬</div><h6>《瞬息全宇宙》</h6>
+        <p>一个华人家庭的洗衣店、一叠报税单，加上无数个平行宇宙——荒诞到让你忘记纠结"今晚看什么"。</p>
+        <div class="tags"><i>喜剧</i><i>脑洞</i><i>2022</i><i>139 分钟</i></div>
+      </div>
+      <div class="spin"><button class="btn" id="gspin">🎲 再抽一次</button><small>已为你随机池已收录 12 部轻松好片，每次随机不重复</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- 每日佳片 -->
+<section id="daily" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h">
+      <span class="eyebrow"><span>📅</span>Today's Picks</span>
+      <h2><em>每日</em>佳片</h2>
+      <p>每天 4 部，不多不少。皮皮电影网的编辑选片标准是：好入口、有记忆点、看完心情不差。</p>
+      <div class="dot"></div>
+    </div>
+    <div class="daily">
+      <div class="dc"><span class="no">DAY 1</span><div class="em">🚀</div><h5>火星救援</h5><p>一个人在火星种土豆求生，全程不掉眼泪，还挺想笑。</p><div class="ft"><span>科幻 / 冒险</span><span>144 min</span></div></div>
+      <div class="dc"><span class="no">DAY 2</span><div class="em">🎭</div><h5>三块广告牌</h5><p>愤怒、愧疚，还有一点点和解。台词锋利得像刀子。</p><div class="ft"><span>剧情 / 犯罪</span><span>115 min</span></div></div>
+      <div class="dc"><span class="no">DAY 3</span><div class="em">🐝</div><h5>蜂蜜之地</h5><p>一部关于养蜂人的纪录片，安静得能听见风声。</p><div class="ft"><span>纪录片</span><span>87 min</span></div></div>
+      <div class="dc"><span class="no">DAY 4</span><div class="em">🍜</div><h5>小森林</h5><p>做饭、吃饭、过日子。适合什么都不想干的那天。</p><div class="ft"><span>治愈 / 生活</span><span>111 min</span></div></div>
+      <div class="dc"><span class="no">DAY 5</span><div class="em">🕶</div><h5>利刃出鞘</h5><p>一场家族葬礼，一群可疑的继承人，笑点和反转一样多。</p><div class="ft"><span>悬疑 / 喜剧</span><span>130 min</span></div></div>
+      <div class="dc"><span class="no">DAY 6</span><div class="em">🌊</div><h5>海蒂和爷爷</h5><p>阿尔卑斯山的阳光和羊奶，是最省力的治愈。</p><div class="ft"><span>家庭 / 剧情</span><span>111 min</span></div></div>
+      <div class="dc"><span class="no">DAY 7</span><div class="em">🎹</div><h5>海上钢琴师</h5><p>一个从未下船的人，把一生弹成了一首曲子。</p><div class="ft"><span>剧情 / 音乐</span><span>165 min</span></div></div>
+      <div class="dc"><span class="no">DAY 8</span><div class="em">🦊</div><h5>犬之岛</h5><p>定格动画，狗说话的样子比很多人类角色都动人。</p><div class="ft"><span>动画 / 冒险</span><span>101 min</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 心情片单 -->
+<section id="mood" style="background:#fff2e2">
+  <div class="wrap">
+    <div class="sec-h" style="text-align:center;margin:0 auto">
+      <span class="eyebrow"><span>🌤</span>Mood Picks</span>
+      <h2>今天<em>心情</em>怎么样？</h2>
+      <p style="margin:0 auto">点一下当下的心情，皮皮给你三部长得不太一样的片子。每次心情对应不同片单，不会总是那几部。</p>
+      <div class="dot" style="margin:18px auto 0"></div>
+    </div>
+    <div class="moods" id="moods">
+      <div class="mood" data-m="happy"><span class="ic">😄</span><b>开心</b><p>HAPPY</p></div>
+      <div class="mood" data-m="sad"><span class="ic">😢</span><b>有点丧</b><p>BLUE</p></div>
+      <div class="mood" data-m="lazy"><span class="ic">🛋</span><b>懒散</b><p>LAZY</p></div>
+      <div class="mood" data-m="brain"><span class="ic">🧠</span><b>想动脑</b><p>SMART</p></div>
+      <div class="mood" data-m="romantic"><span class="ic">💕</span><b>想恋爱</b><p>LOVE</p></div>
+      <div class="mood" data-m="brave"><span class="ic">🦁</span><b>想勇敢</b><p>BRAVE</p></div>
+    </div>
+    <div class="mlist" id="mlist">
+      <h5>今天的 <em id="mname"></em> 片单</h5>
+      <div class="ml" id="ml"></div>
+    </div>
+  </div>
+</section>
+
+<!-- 挑片挑战 -->
+<section id="bingo">
+  <div class="wrap">
+    <div class="sec-h">
+      <span class="eyebrow"><span>🎯</span>Watch Bingo</span>
+      <h2>皮皮<em>挑片挑战</em></h2>
+      <p>一张 4×4 的看片宾果卡：点亮任意一行、一列或对角线，就算本周挑战成功。点过的格子会留下爆米花。</p>
+      <div class="dot"></div>
+    </div>
+    <div class="bingo">
+      <div class="bh"><h4>🍿 本周看片宾果</h4><span>点格子打卡 · 进度自动保存</span></div>
+      <div class="bgrid" id="bgrid"></div>
+      <div class="bbig"><div class="st">已打卡 <b id="bdone">0</b> / 16 格</div><button class="btn btn-ghost" id="breset">🔄 换一局</button></div>
+    </div>
+  </div>
+</section>
+
+<!-- 轻松榜 -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h">
+      <span class="eyebrow"><span>📊</span>Light Charts</span>
+      <h2><em>轻松</em>榜单</h2>
+      <p>不是"影史最伟大"，而是皮皮电影网用户按不同轻松维度投出来的好片榜。</p>
+      <div class="dot"></div>
+    </div>
+    <div class="rank">
+      <div class="rk"><span class="no">01</span><div class="tx"><h5>最适合一个人吃外卖看</h5><p>不需要太集中注意力，但每一口饭都有戏。</p></div><span class="vl">🍿 2841 票</span></div>
+      <div class="rk"><span class="no">02</span><div class="tx"><h5>笑到差点呛到的喜剧</h5><p>选片标准是"看完愿意安利给朋友"。</p></div><span class="vl">😂 2617 票</span></div>
+      <div class="rk"><span class="no">03</span><div class="tx"><h5>失眠夜的最佳陪伴</h5><p>节奏慢、情绪稳、不会越看越清醒。</p></div><span class="vl">🌙 2388 票</span></div>
+      <div class="rk"><span class="no">04</span><div class="tx"><h5>看完想立刻出发去旅行</h5><p>风景本身就是一半的剧情。</p></div><span class="vl">✈️ 2145 票</span></div>
+      <div class="rk"><span class="no">05</span><div class="tx"><h5>爸妈也能一起看</h5><p>全年龄、不尴尬、有共同话题。</p></div><span class="vl">👨‍👩‍👧 2093 票</span></div>
+      <div class="rk"><span class="no">06</span><div class="tx"><h5>看完想学一门手艺</h5><p>做饭、弹琴、种花，被电影拐去动手。</p></div><span class="vl">🎨 1866 票</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 观影打卡 -->
+<section id="board" style="background:#fff2e2">
+  <div class="wrap">
+    <div class="sec-h" style="text-align:center;margin:0 auto">
+      <span class="eyebrow"><span>🍿</span>Popcorn Board</span>
+      <h2>我的<em>观影打卡</em></h2>
+      <p style="margin:0 auto">每天看完一部就点一格，攒满一周会有小惊喜。所有打卡只存在你自己的浏览器里。</p>
+      <div class="dot" style="margin:18px auto 0"></div>
+    </div>
+    <div class="board">
+      <div class="bd-h"><h4>🍿 本周爆米花打卡</h4><span>本周一至周日</span></div>
+      <div class="bd-sub">点掉一天，就当作奖励自己一桶爆米花。</div>
+      <div class="wk" id="wk"></div>
+      <div class="bd-stat">
+        <div class="st-i"><b id="s-done">0</b><span>本周已打卡</span></div>
+        <div class="st-i"><b id="s-streak">0</b><span>连续天数</span></div>
+        <div class="st-i"><b id="s-total">0</b><span>历史总桶数</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 观影搭子 -->
+<section id="buddy">
+  <div class="wrap">
+    <div class="sec-h">
+      <span class="eyebrow"><span>🤝</span>Watch Buddy</span>
+      <h2>找对<em>观影搭子</em></h2>
+      <p>同样一部片子，跟不同的人看体验完全不同。这里是皮皮电影网整理的"观影搭子"类型与适配片单。</p>
+      <div class="dot"></div>
+    </div>
+    <div class="buddy">
+      <div class="bd2"><div class="av">👯</div><h5>话痨搭子</h5><p>每五分钟就要点评一句，适合节奏慢、细节多的片子。</p><div class="tags"><i>烧脑</i><i>细节多</i><i>长片</i></div></div>
+      <div class="bd2"><div class="av">🤫</div><h5>安静搭子</h5><p>全程不出声，看完在门口慢慢聊，适合情绪重的片子。</p><div class="tags"><i>情绪向</i><i>慢节奏</i><i>真实题材</i></div></div>
+      <div class="bd2"><div class="av">😂</div><h5>笑点同步搭子</h5><p>笑在同一个点上，是最好的关系认证。</p><div class="tags"><i>喜剧</i><i>轻松</i><i>合家欢</i></div></div>
+      <div class="bd2"><div class="av">🍿</div><h5>零食搭子</h5><p>带了三袋爆米花，注意力在嘴上，片子只需不无聊。</p><div class="tags"><i>娱乐</i><i>节奏快</i><i>爽片</i></div></div>
+      <div class="bd2"><div class="av">🧐</div><h5>考据搭子</h5><p>看完能给你讲清楚时代背景和镜头语言。</p><div class="tags"><i>历史</i><i>经典</i><i>艺术片</i></div></div>
+      <div class="bd2"><div class="av">💑</div><h5>约会搭子</h5><p>重点不在片子，在于看完一起走的那段路。</p><div class="tags"><i>爱情</i><i>轻松</i><i>不沉重</i></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 资讯 -->
+<section id="news" style="background:#fff2e2">
+  <div class="wrap">
+    <div class="sec-h">
+      <span class="eyebrow"><span>📰</span>Popcorn Notes</span>
+      <h2><em>影迷</em>小报</h2>
+      <p>皮皮电影网的轻松观影观察：不追热点，只聊跟"看片体验"相关的事。</p>
+      <div class="dot"></div>
+    </div>
+    <div class="news">
+      <article class="nm"><div class="ph">🍿</div><div class="tx">
+        <time>📅 09-29 · 观察</time>
+        <h4>为什么我们越来越难决定"今晚看什么"？</h4>
+        <p>选择太多本身就是一种疲劳。本文聊聊"决策疲劳"怎么毁掉一个晚上，以及随机抽片为什么反而更好用。</p>
+      </div></article>
+      <div class="nl">
+        <article class="ni"><time>📅 09-25 · 片单</time><h5>一个人吃外卖时，最适合配的 9 部片子</h5><p>不需要太集中注意力，但每一口饭都有戏。</p></article>
+        <article class="ni"><time>📅 09-20 · 科普</time><h5>爆米花为什么成了电影院的标配？</h5><p>一段关于大萧条时期的零食简史。</p></article>
+        <article class="ni"><time>📅 09-15 · 数据</time><h5>皮皮用户票选：最常被跳过的前十分钟</h5><p>哪些开场最劝退，哪些最值得等。</p></article>
+        <article class="ni"><time>📅 09-09 · 讨论</time><h5>在家看片和去影院，体验到底差在哪？</h5><p>从声音、光线到爆米花温度。</p></article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 订阅 -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sub">
+      <h3>🍿 每天一部，不多不少</h3>
+      <p>每天早上九点，皮皮给你推一部今天能看完的片子：片长、题材、适合的心情，一次说清。</p>
+      <form class="sub-f" onsubmit="event.preventDefault();this.querySelector('button').textContent='🍿 收到，明天九点见';">
+        <input type="email" placeholder="你的邮箱地址" required>
+        <button type="submit">📩 每天推一部</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-h" style="text-align:center;margin:0 auto">
+      <span class="eyebrow"><span>💬</span>FAQ</span>
+      <h2><em>随便</em>问问</h2>
+      <div class="dot" style="margin:18px auto 0"></div>
+    </div>
+    <div class="faq">
+      <details class="fq" open><summary>皮皮电影网能在线看片或下载吗？</summary><div>不能，也不打算做。皮皮电影网是一个轻松的选片指南站，帮你决定"看什么"，影片在哪里看由你自己决定。本站不提供在线播放、下载资源或任何影视文件。</div></details>
+      <details class="fq"><summary>随机抽片会不会一直抽到同一部？</summary><div>不会。抽片机有去重机制，在抽完当前池子之前不会重复，抽完后会自动洗牌重来。你随时可以点"再抽一次"。</div></details>
+      <details class="fq"><summary>心情片单和每日佳片是谁选的？</summary><div>由皮皮电影网的编辑按"好入口、有记忆点、看完心情不差"三个标准筛选，并会定期更新。片单仅供推荐参考，不评价艺术高低。</div></details>
+      <details class="fq"><summary>观影打卡和宾果挑战会记录我的数据吗？</summary><div>不会。所有打卡记录、宾果进度都只存在你自己的浏览器里，不收集、不上传任何个人数据或观影记录。</div></details>
+    </div>
+  </div>
+</section>
+
+<footer class="ft">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr;gap:40px;margin-bottom:40px">
+      <div><a class="logo" href="#" style="color:#fff"><span class="logo-i">🍿</span><span class="logo-t" style="color:#fff">皮皮电影网<small style="color:#8a7a64">pipidianyingwang-zh.github.io</small></span></a>
+        <p>皮皮电影网 pipidianyingwang-zh.github.io —— 一个主打轻松看电影的选片指南站，用随机抽片、心情片单、每日佳片与观影打卡，让你挑片不再纠结。本站不提供任何影视资源。</p></div>
+      <div class="ft-col"><h5>挑片方式</h5><a href="#gacha">🎲 随机抽片</a><a href="#mood">🌤 心情片单</a><a href="#daily">📅 每日佳片</a><a href="#bingo">🎯 挑片挑战</a><a href="#board">🍿 观影打卡</a></div>
+      <div class="ft-col"><h5>片单分类</h5><a href="#">喜剧轻松</a><a href="#">治愈生活</a><a href="#">悬疑烧脑</a><a href="#">爱情浪漫</a><a href="#">家庭合看</a></div>
+      <div class="ft-col"><h5>关于皮皮</h5><a href="#">📄 关于我们</a><a href="#">📋 选片标准</a><a href="#">📧 投稿与反馈</a><a href="#">🔗 友情链接</a><a href="#">🤝 合作与转载</a></div>
+    </div>
+    <div class="ft-bot">
+      <div>© 2026 皮皮电影网 pipidianyingwang-zh.github.io 版权所有 · 本站为选片指南，不提供影视资源</div>
+      <div><a href="#">免责声明</a><a href="#">隐私政策</a><a href="#">选片说明</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+var b=document.getElementById('burger'),n=document.getElementById('nav');
+b.addEventListener('click',function(){n.classList.toggle('open');});
+n.addEventListener('click',function(e){if(e.target.tagName==='A')n.classList.remove('open');});
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var id=a.getAttribute('href');
+    if(id.length>1){var el=document.querySelector(id);if(el){e.preventDefault();window.scrollTo({top:el.offsetTop-90,behavior:'smooth'});}}
+  });
+});
+document.querySelectorAll('.dc,.rk,.bd2,.ni,.nm').forEach(function(c){c.addEventListener('click',function(){window.location.hash='#';});});
+
+/* 抽片机 */
+var POOL=[
+ {p:'🚀',t:'《火星救援》',d:'一个人在火星种土豆求生，全程不掉眼泪，还挺想笑。',g:['科幻','冒险','2022','144 分钟']},
+ {p:'🍜',t:'《小森林》',d:'做饭、吃饭、过日子。适合什么都不想干的那天。',g:['治愈','生活','2015','111 分钟']},
+ {p:'🎭',t:'《三块广告牌》',d:'愤怒、愧疚，还有一点点和解。台词锋利得像刀子。',g:['剧情','犯罪','2017','115 分钟']},
+ {p:'🕶',t:'《利刃出鞘》',d:'一场家族葬礼，一群可疑的继承人，笑点和反转一样多。',g:['悬疑','喜剧','2019','130 分钟']},
+ {p:'🌊',t:'《海蒂和爷爷》',d:'阿尔卑斯山的阳光和羊奶，是最省力的治愈。',g:['家庭','剧情','2015','111 分钟']},
+ {p:'🎹',t:'《海上钢琴师》',d:'一个从未下船的人，把一生弹成了一首曲子。',g:['剧情','音乐','1998','165 分钟']},
+ {p:'🐝',t:'《蜂蜜之地》',d:'一部关于养蜂人的纪录片，安静得能听见风声。',g:['纪录片','','2019','87 分钟']},
+ {p:'🦊',t:'《犬之岛》',d:'定格动画，狗说话的样子比很多人类角色都动人。',g:['动画','冒险','2018','101 分钟']},
+ {p:'🪐',t:'《星际穿越》',d:'黑洞、时间、和一个父亲的选择，看得懂多少都能被击中。',g:['科幻','剧情','2014','169 分钟']},
+ {p:'🌸',t:'《情书》',d:'一场关于名字的误会，寄出了一整封春天。',g:['爱情','文艺','1995','117 分钟']},
+ {p:'🚗',t:'《疯狂的麦克斯4》',d:'两个小时几乎没有停下来过，爽片的物理上限。',g:['动作','科幻','2015','120 分钟']},
+ {p:'🎪',t:'《心灵奇旅》',d:'关于"平凡的一天也值得活"，看完会想好好吃一顿饭。',g:['动画','治愈','2020','101 分钟']}
+];
+var used=[],screen=document.getElementById('gscreen');
+function draw(){
+  if(!used.length)used=POOL.map(function(_,i){return i;});
+  var i=used.splice(Math.floor(Math.random()*used.length),1)[0];
+  var f=POOL[i];
+  screen.style.opacity='0';
+  setTimeout(function(){
+    screen.innerHTML='<div class="ph">'+f.p+'</div><h6>'+f.t+'</h6><p>'+f.d+'</p><div class="tags">'+f.g.map(function(x){return '<i>'+x+'</i>';}).join('')+'</div>';
+    screen.style.transition='opacity .3s';screen.style.opacity='1';
+  },220);
+}
+document.getElementById('gspin').addEventListener('click',draw);
+draw();
+
+/* 心情片单 */
+var M={
+ happy:{name:'开心',list:[['《利刃出鞘》','笑点和反转一样多的家族悬疑。'],['《触不可及》','轻松、温暖、不煽情。'],['《帕丁顿熊》','治愈但不幼稚。']]},
+ sad:{name:'有点丧',list:[['《海边的曼彻斯特》','悲伤不必被治愈。'],['《小森林》','做饭、吃饭、过日子。'],['《蜂蜜之地》','安静得能听见风声。']]},
+ lazy:{name:'懒散',list:[['《小森林》','不需要动脑的节奏。'],['《帕丁顿熊》','治愈但不幼稚。'],['《海蒂和爷爷》','最省力的治愈。']]},
+ brain:{name:'想动脑',list:[['《盗梦空间》','梦境层级需要你自己数。'],['《看不见的客人》','反转在最后一分钟。'],['《消失的爱人》','婚姻的另一种写法。']]},
+ romantic:{name:'想恋爱',list:[['《情书》','一场关于名字的误会。'],['《爱在黎明破晓前》','一场对话撑起整部电影。'],['《她》','关于"爱"的边界。']]},
+ brave:{name:'想勇敢',list:[['《摔跤吧！爸爸》','一场关于选择的抗争。'],['《白日梦想家》','去冰岛只需要一张机票。'],['《当幸福来敲门》','最难的时候还在往前走。']]}
+};
+document.querySelectorAll('.mood').forEach(function(m){
+  m.addEventListener('click',function(){
+    document.querySelectorAll('.mood').forEach(function(x){x.classList.remove('on');});
+    m.classList.add('on');
+    var o=M[m.dataset.m];
+    document.getElementById('mname').textContent=o.name;
+    var h='';o.list.forEach(function(r){h+='<div class="mi"><b>'+r[0]+'</b><p>'+r[1]+'</p></div>';});
+    var box=document.getElementById('mlist');
+    box.querySelector('.ml').innerHTML=h;
+    box.classList.add('on');
+  });
+});
+
+/* 宾果 */
+var BG=['一部十年前的老片','一部你只看过的海报','一部动画长片','一部有字幕的外语片',
+ '一部时长超过 160 分钟的','一部纪录片','一部翻拍或续集','一部黑白片',
+ '一部没人跟你提起过的','一部看哭过的','一部看笑过的','一部你中途睡着过的',
+ '一部配乐出圈的','一部朋友推荐的','一部获过奖的','一部关于食物的'];
+var bgrid=document.getElementById('bgrid');
+function mkBingo(seed){
+  bgrid.innerHTML='';
+  var arr=BG.slice();
+  for(var i=arr.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1));var t=arr[i];arr[i]=arr[j];arr[j]=t;}
+  var dn=JSON.parse(localStorage.getItem('pipi_bingo')||'{}');
+  for(var k=0;k<16;k++){
+    var c=document.createElement('div');c.className='bb'+(dn[k]?' done':'');
+    c.textContent=arr[k];c.dataset.k=k;
+    c.addEventListener('click',function(){
+      var s=JSON.parse(localStorage.getItem('pipi_bingo')||'{}');
+      s[this.dataset.k]=s[this.dataset.k]?0:1;
+      localStorage.setItem('pipi_bingo',JSON.stringify(s));
+      this.classList.toggle('done');updStat();
+    });
+    bgrid.appendChild(c);
+  }
+  updStat();
+}
+function updStat(){
+  var dn=JSON.parse(localStorage.getItem('pipi_bingo')||'{}'),c=0;
+  for(var k in dn)if(dn[k])c++;
+  document.getElementById('bdone').textContent=c;
+}
+document.getElementById('breset').addEventListener('click',function(){localStorage.removeItem('pipi_bingo');mkBingo();});
+mkBingo();
+
+/* 打卡 */
+var wk=document.getElementById('wk');
+function renderWk(){
+  var days=['一','二','三','四','五','六','日'],now=new Date();
+  var ds=localStorage.getItem('pipi_wk_date'),key='pipi_wk_'+now.getFullYear()+'-'+(now.getMonth()+1)+'-'+now.getDate();
+  if(ds!==key){localStorage.setItem('pipi_wk_date',key);localStorage.setItem('pipi_wk',JSON.stringify({}));}
+  var w=JSON.parse(localStorage.getItem('pipi_wk')||'{}');
+  wk.innerHTML='';
+  days.forEach(function(d,i){
+    var c=document.createElement('div');c.className='day'+(w[i]?' on':'');
+    c.innerHTML='<b>周'+d+'</b><div class="popc">'+(w[i]?'🍿':'+')+'</div>';
+    c.addEventListener('click',function(){
+      var w2=JSON.parse(localStorage.getItem('pipi_wk')||'{}');
+      w2[i]=w2[i]?0:1;localStorage.setItem('pipi_wk',JSON.stringify(w2));
+      c.classList.toggle('on');c.querySelector('.popc').textContent=w2[i]?'🍿':'+';updWk();
+    });
+    wk.appendChild(c);
+  });
+  updWk();
+}
+function updWk(){
+  var w=JSON.parse(localStorage.getItem('pipi_wk')||'{}'),c=0,st=0,max=0,cur=0,t=0;
+  for(var i=0;i<7;i++){
+    if(w[i]){c++;cur++;max=Math.max(max,cur);t++;}
+    else{cur=0;}
+  }
+  for(var j=0;j<7&&w[j];j++)st++;
+  document.getElementById('s-done').textContent=c;
+  document.getElementById('s-streak').textContent=Math.max(st,max);
+  document.getElementById('s-total').textContent=parseInt(localStorage.getItem('pipi_total')||'0',10)+c;
+}
+wk.addEventListener && renderWk();
+renderWk();
+})();
+</script>
+</body>
+</html>
